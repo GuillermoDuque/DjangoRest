@@ -36,7 +36,6 @@ class CategoryProduct(BaseModel):
 
     # TODO: Define fields here
     description = models.CharField('Description', max_length=50, unique=True, null=False, blank= False)
-    measure_unit = models.ForeignKey(MeasureUnit, on_delete=models.CASCADE, verbose_name='Measure unit')
     historical = HistoricalRecords()
     @property
     def _history_user(self):
@@ -85,6 +84,8 @@ class Product(BaseModel):
     """Model definition for Product."""
     name = models.CharField('Product name', max_length=150, unique=True, null=False, blank=False)
     description = models.TextField('Product description', blank=False, null=False)
+    measure_unit = models.ForeignKey(MeasureUnit, on_delete=models.CASCADE, verbose_name='measure unit', null=True)
+    category_product = models.ForeignKey(CategoryProduct, on_delete=models.CASCADE, verbose_name='Category Product', null=True)
     image = models.ImageField('Product image', upload_to='products/', blank=True, null=True)
     historical = HistoricalRecords()
     
