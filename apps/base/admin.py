@@ -2,5 +2,13 @@ from apps.products.models import MeasureUnit, CategoryProduct, Indicator, Produc
 from django.contrib import admin
 
 
-myModels = [MeasureUnit, CategoryProduct, Indicator, Product]  # iterable list
-admin.site.register(myModels)
+class MeasureUnitAdmin(admin.ModelAdmin):
+    list_display = ('id','description')
+
+class CategoryProductAdmin(admin.ModelAdmin):
+    list_display = ('id','description')
+    
+admin.site.register(MeasureUnit, MeasureUnitAdmin)
+admin.site.register(CategoryProduct, CategoryProductAdmin)
+admin.site.register(Indicator)
+admin.site.register(Product)
